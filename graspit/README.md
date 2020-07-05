@@ -1,7 +1,4 @@
 <h1>GraspIt!</h1>
-
-Introduction
-------------
 Please see the User Manual found at http://graspit-simulator.github.io/ for an introduction to GraspIt!, a list of
 features, installation instructions, getting started examples, etc.
 
