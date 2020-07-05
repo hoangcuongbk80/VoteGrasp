@@ -31,8 +31,9 @@ make -j5
 
 Create Contacts
 ---------------------
-add sphere , add hand (see /worlds/franka_sphere.xml)
-menu -> grasp -> virtual contacts
+add sphere , add hand (see /worlds/franka_sphere.xml) <br />
+menu -> grasp -> virtual contacts <br />
+<img src="figs/add_contacts_01.png" width="290" /><img src="figs/add_contacts_02.png" width="290" />
 
 
 Useful Links
