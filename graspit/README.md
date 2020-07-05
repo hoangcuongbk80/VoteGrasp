@@ -29,6 +29,23 @@ cmake ..
 make -j5
    ```
 
+
+Grasp Planning
+---------------------
+Open /worlds/franka_mug.xml (load Franka gripper and a mug) <br />
+Grasp->EigenGrasp Planner (menu) <br />
+select Axis-angle as Space Search Type <br />
+select Hand Contacts as Energy formulation <br />
+check the Preset contacts box. <br />
+select Sim. Ann. as Planner Type <br />
+set 70000 as Max Steps <br />
+click Init <br />
+click >   <br />
+allow the planner to run until finished. <br />
+use the Show Results buttons ( < Best > ) to see the results. <br />
+
+ <img src="figs/EigenGrasp_Planners.png.png" width="500" />
+
 Create Contacts
 ---------------------
 add sphere , add hand (see /worlds/franka_sphere.xml) <br />
