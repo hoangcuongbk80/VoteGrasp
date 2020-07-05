@@ -29,7 +29,13 @@ cmake ..
 make -j5
    ```
 
-Examples of How to Integrate GraspIt! into your own Project
+Create Contacts
+---------------------
+add sphere , add hand (see /worlds/franka_sphere.xml)
+menu -> grasp -> virtual contacts
+
+
+Useful Links
 ---------------------
 
 https://github.com/curg/graspit_interface <br />
