@@ -34,6 +34,7 @@ Create Contacts
 add sphere , add hand (see /worlds/franka_sphere.xml) <br />
 menu -> grasp -> virtual contacts <br />
 bump the sphere into the hand, and click mark contact. Do this several times, then click save in the virtual grasp window. <br />
+save contacts to /models/robots/franka_gripper/virtual/contacts.vgr  <br />
 
 <img src="figs/add_contacts_01.png" width="350" /><img src="figs/add_contacts_02.png" width="350" />
 
