@@ -44,7 +44,7 @@ click >   <br />
 allow the planner to run until finished. <br />
 use the Show Results buttons ( < Best > ) to see the results. <br />
 
- <img src="figs/EigenGrasp_Planners.png" width="500" />
+ <img src="figs/EigenGrasp_Planners.png" width="800" />
 
 Create Contacts
 ---------------------
