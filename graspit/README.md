@@ -26,7 +26,7 @@ export GRASPIT=$PWD
 mkdir build
 cd build
 cmake ..
-make -j5
+make
    ```
 
 
