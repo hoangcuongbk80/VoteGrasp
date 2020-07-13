@@ -156,6 +156,9 @@ class VariableSet
     void setAllFixed(bool f);
 
     void writeToFile(FILE *fp) const;
+    //Cuong
+    void saveGrasp(FILE *fp) const;
+    
     bool readFromFile(FILE *fp);
     bool readFromArray(std::vector<double> array);
     void print() const;
@@ -311,6 +314,7 @@ class HandObjectState
     const PositionState *readPosition() const {return mPosition;}
 
     void writeToFile(FILE *fp) const;
+    void saveGrasp(FILE *fp) const;
     bool readFromFile(FILE *fp);
 
     //! Prints the variables to stderr

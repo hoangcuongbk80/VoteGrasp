@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<world>
+		<obstacle>
+        <filename>models/obstacles/simpleFloor.xml</filename>
+        <transform>
+            <fullTransform>(+1 0 0 0)[0 -500 480]</fullTransform>
+        </transform>
+    </obstacle>
+    <obstacle>
+        <filename>models/obstacles/table.xml</filename>
+        <transform>
+            <fullTransform>(+1 0 0 0)[0 -500 480]</fullTransform>
+        </transform>
+    </obstacle>
+    <obstacle>
+        <filename>models/obstacles/puma_stand.xml</filename>
+        <transform>
+            <fullTransform>(+1 0 0 0)[0 -500 480]</fullTransform>
+        </transform>
+    </obstacle>
+	<graspableBody>
+		<filename>models/objects/banana.xml</filename>
+		<transform>
+			<fullTransform>(+1 +0 +0 +0)[+0 +0 +0]</fullTransform>
+		</transform>
+	</graspableBody>
+	<robot>
+		<filename>models/robots/franka_gripper/franka_gripper.xml</filename>
+		<dofValues>+0.0679229 </dofValues>
+		<transform>
+			<fullTransform>(+1 +0 +0 +0)[+0 +0 +200]</fullTransform>
+		</transform>
+	</robot>
+	<camera>
+		<position>+180.203 +561.87 +582.507</position>
+		<orientation>+0.342272 -0.0942531 +0.0264339 -0.934488</orientation>
+		<focalDistance>+747.41</focalDistance>
+	</camera>
+</world>

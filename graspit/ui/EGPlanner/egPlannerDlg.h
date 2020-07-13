@@ -32,6 +32,11 @@
 
 #include <vector>
 
+//Cuong
+#include <iostream>
+#include <fstream>
+using namespace std;
+
 class QGridLayout;
 class QCheckBox;
 class QVBoxLayout;

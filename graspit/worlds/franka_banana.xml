@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<world>
+	<graspableBody>
+		<filename>models/objects/banana.xml</filename>
+		<transform>
+			<fullTransform>(+1 +0 +0 +0)[+0 +0 +0]</fullTransform>
+		</transform>
+	</graspableBody>
+	<robot>
+		<filename>models/robots/franka_gripper/franka_gripper.xml</filename>
+		<dofValues>+0.0679229 </dofValues>
+		<transform>
+			<fullTransform>(+1 +0 +0 +0)[+0 +0 -300]</fullTransform>
+		</transform>
+	</robot>
+	<camera>
+		<position>+180.203 +561.87 +582.507</position>
+		<orientation>+0.342272 -0.0942531 +0.0264339 -0.934488</orientation>
+		<focalDistance>+747.41</focalDistance>
+	</camera>
+</world>

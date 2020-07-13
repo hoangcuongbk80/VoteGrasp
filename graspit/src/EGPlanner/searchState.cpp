@@ -231,6 +231,16 @@ VariableSet::writeToFile(FILE *fp) const
   fprintf(fp, "\n");
 }
 
+// Cuong
+void
+VariableSet::saveGrasp(FILE *fp) const
+{
+  for (int i = 0; i < getNumVariables(); i++) {
+    fprintf(fp, "%f ", mVariables[i]->getValue());
+  }
+  fprintf(fp, "\n");
+}
+
 bool
 VariableSet::readFromFile(FILE *fp)
 {
@@ -510,6 +520,12 @@ void HandObjectState::writeToFile(FILE *fp) const
 {
   mPosture->writeToFile(fp);
   mPosition->writeToFile(fp);
+}
+
+// Cuong
+void HandObjectState::saveGrasp(FILE *fp) const
+{
+  mPosition->saveGrasp(fp);
 }
 
 bool HandObjectState::execute(Hand *h) const

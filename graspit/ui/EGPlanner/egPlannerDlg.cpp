@@ -354,9 +354,37 @@ void EigenGraspPlannerDlg::prevGraspButton_clicked()
 
 void EigenGraspPlannerDlg::bestGraspButton_clicked()
 {
+  //Cuong
   if (!mPlanner) { return; }
   mDisplayState = 0;
-  updateResults(true);
+  ofstream myfile;
+  myfile.open ("grasp.txt");
+  myfile << "x " << "y " << "z ";
+  myfile << "rot.x " << "rot.y " << "rot.z " << "rot.w ";
+  myfile << "quality "  << "dofValue" << "\n";
+
+  for(int i=0; i < mPlanner->getListSize(); i++)
+  {
+    updateResults(true);
+
+    //save grasp to file
+    float x = mHand->getTran().translation().x() / 2000;
+    float y = mHand->getTran().translation().y() / 2000;
+    float z = mHand->getTran().translation().z() / 2000;
+    myfile << x << " " << y << " " << z << " ";
+    Quaternion rot = mHand->getTran().rotation();
+    myfile << rot.x << " " << rot.y << " " << rot.z << " " << rot.w  << " ";
+    const GraspPlanningState *s = mPlanner->getGrasp(mDisplayState);
+    double  energy = s->getEnergy();
+    myfile << energy << " ";
+    double dof[mHand->getNumDOF()];
+    mHand->getDOFVals(dof);
+    myfile << dof[0] << "\n";
+
+    mDisplayState++;
+  }
+  myfile.close();
+  mDisplayState=0;
 }
 
 void EigenGraspPlannerDlg::nextGraspButton_clicked()
@@ -406,7 +434,7 @@ void EigenGraspPlannerDlg::updateResults(bool render)
     energy = s->getEnergy();
   }
 
-  /*
+  /* 
   FILE *f = fopen("foo.txt","w");
   for (int i=0; i<mPlanner->getListSize(); i++) {
    for(int j=i+1; j<mPlanner->getListSize(); j++) {
@@ -417,7 +445,8 @@ void EigenGraspPlannerDlg::updateResults(bool render)
    mPlanner->getGrasp(i)->writeToFile(f);
   }
   fclose(f);
-  */
+ 
+ */ 
 
   QString n1, n2;
   n1.setNum(rank);
@@ -434,6 +463,19 @@ void EigenGraspPlannerDlg::updateResults(bool render)
     //mHand->getGrasp()->update();
     mPlanner->getGrasp(mDisplayState)->printState();
     //mHand->autoGrasp(true);
+    
+    //cuong
+    fprintf(stderr,"numDOF: %d\n", mHand->getNumDOF());
+    double dof[mHand->getNumDOF()];
+    mHand->getDOFVals(dof);
+    fprintf(stderr,"DOFVals: %f\n", dof[0]);
+    Quaternion rot = mHand->getTran().rotation();
+    float x = mHand->getTran().translation().x();
+    float y = mHand->getTran().translation().y();
+    float z = mHand->getTran().translation().z();
+    fprintf(stderr,"rx ry rz rw: %f %f %f %f\n", rot.x, rot.y, rot.z, rot.w);
+    fprintf(stderr,"x y z: %f %f %f\n", x, y, z);
+    fprintf(stderr,"energy: %f\n", energy);
   }
 }
 
