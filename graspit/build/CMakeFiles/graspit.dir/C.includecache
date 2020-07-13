@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../ply/ply.h
+stdio.h
+-
+stddef.h
+-
+
+/home/hoang/OSS/VoteGrasp/graspit/ply/ply.c
+assert.h
+-
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+string.h
+-
+ply.h
+-
+

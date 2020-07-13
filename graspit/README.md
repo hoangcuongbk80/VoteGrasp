@@ -32,7 +32,7 @@ make
 
 Grasp Planning
 ---------------------
-Open /worlds/franka_mug.xml (load Franka gripper and a mug) <br />
+Open /worlds/franka_banana.xml (load Franka gripper and a banana) <br />
 Grasp->EigenGrasp Planner (menu) <br />
 select Axis-angle as Space Search Type <br />
 select Hand Contacts as Energy formulation <br />
@@ -43,6 +43,7 @@ click Init <br />
 click >   <br />
 allow the planner to run until finished. <br />
 use the Show Results buttons ( < Best > ) to see the results. <br />
+After press Best button, a grasp.txt file will be saved to graspit/build.
 
  <img src="figs/EigenGrasp_Planners.png" width="800" />
 
