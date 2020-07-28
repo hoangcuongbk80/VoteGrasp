@@ -368,9 +368,9 @@ void EigenGraspPlannerDlg::bestGraspButton_clicked()
     updateResults(true);
 
     //save grasp to file
-    float x = mHand->getTran().translation().x() / 2000;
-    float y = mHand->getTran().translation().y() / 2000;
-    float z = mHand->getTran().translation().z() / 2000;
+    float x = mHand->getTran().translation().x() / 2200;
+    float y = mHand->getTran().translation().y() / 2200;
+    float z = mHand->getTran().translation().z() / 2200;
     myfile << x << " " << y << " " << z << " ";
     Quaternion rot = mHand->getTran().rotation();
     myfile << rot.x << " " << rot.y << " " << rot.z << " " << rot.w  << " ";
@@ -463,19 +463,6 @@ void EigenGraspPlannerDlg::updateResults(bool render)
     //mHand->getGrasp()->update();
     mPlanner->getGrasp(mDisplayState)->printState();
     //mHand->autoGrasp(true);
-    
-    //cuong
-    fprintf(stderr,"numDOF: %d\n", mHand->getNumDOF());
-    double dof[mHand->getNumDOF()];
-    mHand->getDOFVals(dof);
-    fprintf(stderr,"DOFVals: %f\n", dof[0]);
-    Quaternion rot = mHand->getTran().rotation();
-    float x = mHand->getTran().translation().x();
-    float y = mHand->getTran().translation().y();
-    float z = mHand->getTran().translation().z();
-    fprintf(stderr,"rx ry rz rw: %f %f %f %f\n", rot.x, rot.y, rot.z, rot.w);
-    fprintf(stderr,"x y z: %f %f %f\n", x, y, z);
-    fprintf(stderr,"energy: %f\n", energy);
   }
 }
 

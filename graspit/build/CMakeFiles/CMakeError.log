@@ -1,0 +1,175 @@
+Determining if the function sgemm_ exists failed with the following output:
+Change Dir: /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2e9d5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2e9d5.dir/build.make CMakeFiles/cmTC_2e9d5.dir/build
+make[1]: Entering directory '/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2e9d5.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgemm_   -o CMakeFiles/cmTC_2e9d5.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.13/Modules/CheckFunctionExists.c
+Linking C executable cmTC_2e9d5
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2e9d5.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sgemm_    -rdynamic CMakeFiles/cmTC_2e9d5.dir/CheckFunctionExists.c.o  -o cmTC_2e9d5 
+CMakeFiles/cmTC_2e9d5.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `sgemm_'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_2e9d5.dir/build.make:86: recipe for target 'cmTC_2e9d5' failed
+make[1]: *** [cmTC_2e9d5] Error 1
+make[1]: Leaving directory '/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_2e9d5/fast' failed
+make: *** [cmTC_2e9d5/fast] Error 2
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_387ec/fast"
+/usr/bin/make -f CMakeFiles/cmTC_387ec.dir/build.make CMakeFiles/cmTC_387ec.dir/build
+make[1]: Entering directory '/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_387ec.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_387ec.dir/CheckSymbolExists.c.o   -c /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_387ec
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_387ec.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_387ec.dir/CheckSymbolExists.c.o  -o cmTC_387ec 
+CMakeFiles/cmTC_387ec.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_387ec.dir/build.make:86: recipe for target 'cmTC_387ec' failed
+make[1]: *** [cmTC_387ec] Error 1
+make[1]: Leaving directory '/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_387ec/fast' failed
+make: *** [cmTC_387ec/fast] Error 2
+
+File /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_38edb/fast"
+/usr/bin/make -f CMakeFiles/cmTC_38edb.dir/build.make CMakeFiles/cmTC_38edb.dir/build
+make[1]: Entering directory '/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_38edb.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_38edb.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.13/Modules/CheckFunctionExists.c
+Linking C executable cmTC_38edb
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_38edb.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_38edb.dir/CheckFunctionExists.c.o  -o cmTC_38edb -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_38edb.dir/build.make:86: recipe for target 'cmTC_38edb' failed
+make[1]: *** [cmTC_38edb] Error 1
+make[1]: Leaving directory '/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_38edb/fast' failed
+make: *** [cmTC_38edb/fast] Error 2
+
+
+Determining if the Q_WS_WIN exist failed with the following output:
+Change Dir: /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e4961/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e4961.dir/build.make CMakeFiles/cmTC_e4961.dir/build
+make[1]: Entering directory '/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_e4961.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++   -I/usr/include/qt4   -o CMakeFiles/cmTC_e4961.dir/CheckSymbolExists.cxx.o -c /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_WIN’ was not declared in this scope
+   return ((int*)(&Q_WS_WIN))[argc];
+                   ^
+CMakeFiles/cmTC_e4961.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_e4961.dir/CheckSymbolExists.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_e4961.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: Leaving directory '/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_e4961/fast' failed
+make: *** [cmTC_e4961/fast] Error 2
+
+File /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_WIN
+  return ((int*)(&Q_WS_WIN))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_QWS exist failed with the following output:
+Change Dir: /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_5cdc2/fast"
+/usr/bin/make -f CMakeFiles/cmTC_5cdc2.dir/build.make CMakeFiles/cmTC_5cdc2.dir/build
+make[1]: Entering directory '/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_5cdc2.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++   -I/usr/include/qt4   -o CMakeFiles/cmTC_5cdc2.dir/CheckSymbolExists.cxx.o -c /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_QWS’ was not declared in this scope
+   return ((int*)(&Q_WS_QWS))[argc];
+                   ^
+CMakeFiles/cmTC_5cdc2.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_5cdc2.dir/CheckSymbolExists.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_5cdc2.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: Leaving directory '/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_5cdc2/fast' failed
+make: *** [cmTC_5cdc2/fast] Error 2
+
+File /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_QWS
+  return ((int*)(&Q_WS_QWS))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_MAC exist failed with the following output:
+Change Dir: /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_47bbf/fast"
+/usr/bin/make -f CMakeFiles/cmTC_47bbf.dir/build.make CMakeFiles/cmTC_47bbf.dir/build
+make[1]: Entering directory '/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_47bbf.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++   -I/usr/include/qt4   -o CMakeFiles/cmTC_47bbf.dir/CheckSymbolExists.cxx.o -c /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_MAC’ was not declared in this scope
+   return ((int*)(&Q_WS_MAC))[argc];
+                   ^
+CMakeFiles/cmTC_47bbf.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_47bbf.dir/CheckSymbolExists.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_47bbf.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: Leaving directory '/home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_47bbf/fast' failed
+make: *** [cmTC_47bbf/fast] Error 2
+
+File /home/hoang/OSS/VoteGrasp/graspit/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_MAC
+  return ((int*)(&Q_WS_MAC))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
