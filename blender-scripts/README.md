@@ -1,5 +1,4 @@
-# VoteGrasp
+# Blender scripts for capturing depth images of a scene
 
-<img src="doc/grasp_pc_rviz.png" width="800" />
+<img src="https://github.com/hoangcuongbk80/VoteGrasp/tree/master/doc/depth.png" width="800" />
 
-<img src="doc/grasp_model_rviz.png" width="800" />
