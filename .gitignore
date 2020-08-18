@@ -1,0 +1,14 @@
+
+# VS Studio Code
+.vscode
+
+# pyenv
+.python-version
+
+# dotenv
+.env
+
+# virtualenv
+.venv
+venv/
+ENV/
