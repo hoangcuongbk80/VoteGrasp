@@ -23,28 +23,32 @@ def update_camera(camera, focus_point=mathutils.Vector((0.0, 0.0, 0.0)), distanc
     camera.location = rot_quat @ mathutils.Vector((0.0, 0.0, distance))
 
 
-#bpy.ops.import_mesh.stl(filepath="/home/hoang/Desktop/YCB-models/005_tomato_soup_can/google_16k/nontextured.stl")
-
 data_dir = '/home/hoang/OSS/VoteGrasp/blender-scripts'
 
 
 with open(os.path.splitext(bpy.data.filepath)[0] + "_object_pose.txt", 'w') as fs:
-    fs. write("object_ID x y z qx qy qz qw\n")
+    fs. write("object_ID x y z rx ry rz\n")
     for object in bpy.data.objects:
-         fs.write("%s " % (object.name))
-         loc = object.location
-         fs.write("%f %f %f " % (loc[0], loc[1], loc[2]))
-         rot = object.rotation_quaternion
-         fs.write("%f %f %f %f\n" % (rot[1], rot[2], rot[3], rot[0]))
+        if object.name not in ['Camera', 'Grid', 'Light']:             
+            fs.write("%s " % (object.name))
+            #loc = object.location * 2200
+            loc = object.location
+            fs.write("%f %f %f " % (loc[0], loc[1], loc[2]))
+            #rot = object.rotation_quaternion
+            #fs.write("%f %f %f %f\n" % (rot[1], rot[2], rot[3], rot[0]))
+            rot = object.rotation_euler
+            fs.write("%f %f %f\n" % (rot[0], rot[1], rot[2]))
          
 
 cam = bpy.data.objects['Camera']
-num_view = 1
+num_view = 10
 pi = math.pi
 radius = 8
+f = open(os.path.splitext(bpy.data.filepath)[0] + "_camera_pose.txt", "w")
+f.write("image x y z rx ry rz \n")
 
 for i in range (0, num_view):
-    cam_Z = 5.0
+    cam_Z = 10.0
     cam_X = radius * math.cos(i*pi/num_view)
     cam_Y = radius * math.sin(i*pi/num_view)
     cam.location = (cam_X, cam_Y, cam_Z)
@@ -53,6 +57,16 @@ for i in range (0, num_view):
     # render
     bpy.ops.render.render()
     
-    old_name = os.path.join(data_dir, 'depth/Image0000.png')
-    new_name = os.path.join(data_dir, 'depth' ,str(i) + '.png')
+    old_name = os.path.join(data_dir, 'depth/Image0000.exr')
+    new_name = os.path.join(data_dir, 'depth' ,str(i) + '.exr')
     os.rename(old_name, new_name)
+
+    # save camera pose
+    img_name = str(i) + '.exr'
+    f.write("%s " % (img_name))
+    loc = bpy.data.objects['Camera'].location
+    f.write("%f %f %f " % (loc[0], loc[1], loc[2]))
+    rot = bpy.data.objects['Camera'].rotation_euler
+    f.write("%f %f %f\n" % (rot[0], rot[1], rot[2]))
+    
+f.close()

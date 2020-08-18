@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="visualize_pointcloud" pkg="ros_votegrasp" type="visualize_pointcloud_node" cwd="node">
+  <param name="point_cloud_path" value="/home/hoang/OSS/VoteGrasp/blender-scripts/pointcloud/0.ply"/>
+  <!-- <param name="point_cloud_path" value="/home/hoang/catkin_ws/src/ros_votegrasp/data/ycb-models/011_banana/nontextured.ply"/> -->  
+  </node>
+  <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ros_votegrasp)/launch/votegrasp.rviz"/>
+  
+</launch>
