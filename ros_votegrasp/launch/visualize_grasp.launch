@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <node name="visualize_grasp" pkg="ros_votegrasp" type="visualize_grasp_node" cwd="node">
-  <param name="grasp_path" value="/home/hoang/OSS/VoteGrasp/blender-scripts/scene_grasp.txt"/>
+  <param name="grasp_path" value="$(find ros_votegrasp)/data/grasp/1002.txt"/>
   <!-- <param name="grasp_path" value="/home/hoang/catkin_ws/src/ros_votegrasp/data/ycb-models/011_banana/grasp_euler.txt"/> -->
   <param name="rot_type" value="1"/> <!-- 0: quaternions, 1: Euler angles -->   
   </node>
