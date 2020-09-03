@@ -13,6 +13,8 @@ The tools require full ROS installation. The installation assumes you have Ubunt
    $ roslaunch ros_votegrasp visualize_pointcloud.launch
    $ roslaunch ros_votegrasp visualize_grasp.launch
 
+Note that before run depth2pointcloud.launch, you need to convert masks to semantic images using [this python script](https://github.com/hoangcuongbk80/VoteGrasp/tree/master/blender-scripts/tools)
+
 <img src="doc/grasp_pc_rviz.png" width="800" />
 
 <img src="doc/grasp_model_rviz.png" width="800" />
