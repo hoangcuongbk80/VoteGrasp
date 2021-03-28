@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="visualize_models" pkg="ros_votegrasp" type="model2scene_node" cwd="node">
+  <param name="model_dir" value="$(find ros_votegrasp)/data/ycb-models/"/>
+  <param name="blender_data_dir" value="/home/hoang/OSS/VoteGrasp/blender-scripts/data/"/>
+  <param name="start_scene" value="0"/>
+  <param name="end_scene" value="51"/>
+  </node>
+</launch>

@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="panda" >
+
+  <!-- panda arm -->
+  <xacro:include filename="$(find franka_description)/robots/panda_arm.xacro"/>
+  <xacro:include filename="$(find franka_description)/robots/hand.xacro"/> 
+
+  <!-- for simulation -->
+  <xacro:include filename="$(find franka_description)/robots/panda.transmission.xacro"/>
+  <xacro:include filename="$(find panda_table_description)/urdf/panda_table.gazebo.xacro"/>
+  <!-- end for simulation -->
+
+  <xacro:panda_arm connected_to="mount_flange_link" xyz="0.0 0.0 0.0" rpy="0 0 ${pi}" />
+  <xacro:if value="$(arg load_gripper)">
+     <xacro:hand ns="panda" rpy="0 0 ${-pi/4}" connected_to="panda_link8"/>
+  </xacro:if>
+  <xacro:unless value="$(arg load_gripper)">
+   <link name="tool">
+     <inertial>
+       <mass value="0.642"/>
+       <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+       <origin/>
+     </inertial>
+     <visual>
+       <origin xyz="0 0 -0.15" rpy="0 0 0" />
+       <geometry>
+         <cylinder radius="0.0085" length="0.3" />
+       </geometry>       
+       <material name="orange"/>
+     </visual>
+     <collision name="tool_collision">
+       <origin xyz="0 0 -0.15" rpy="0 0 0" />
+       <geometry>
+         <cylinder radius="0.0085" length="0.3" />
+       </geometry>
+     </collision>
+   </link>
+  
+     <joint name="tool_joint" type="fixed">
+       <parent link="panda_link8" />
+       <child link = "tool" />
+       <origin xyz="0.0 0.0 0.3" rpy="0.0 0.0 0.0" />
+     </joint>
+
+  </xacro:unless>
+
+  <!-- for simulation -->
+  <xacro:arg name="robot_name" default="panda"/>
+  <xacro:panda_table_gazebo robot_name="$(arg robot_name)" load_gripper="$(arg load_gripper)" />
+  <xacro:panda_transmission robot_name="$(arg robot_name)" load_gripper="$(arg load_gripper)" />
+  <!-- end for simulation -->
+
+  <link name="world" />
+
+  <link name="table">
+    <visual>
+      <geometry>
+	<box size="1.0 1.11 0.7" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.35" />
+    </visual>
+    <collision>
+      <geometry>
+	<box size="1.0 1.11 0.7" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.35" />
+    </collision>
+   </link>
+  
+   <link name="mount_flange_link">
+     <inertial>
+       <mass value="0.01"/>
+       <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+       <origin/>
+     </inertial>
+     <visual>
+       <origin xyz="0 0 0" rpy="0 0 0" />
+       <geometry>
+         <box size="0.15 0.15 0.005" />
+       </geometry>
+       <material name="orange"/>
+     </visual>
+   </link>
+ 
+   <link name="column1">
+    <visual>
+      <geometry>
+	<box size="0.1 0.1 0.515" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </visual>
+    <collision>
+      <geometry>
+	<box size="0.1 0.1 0.515" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </collision>
+   </link>
+   <link name="column2">
+    <visual>
+      <geometry>
+	<box size="0.1 0.1 0.515" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </visual>
+    <collision>
+      <geometry>
+	<box size="0.1 0.1 0.515" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </collision>
+   </link>
+   
+   <link name="camera_link">
+     <inertial>
+       <mass value="0.01"/>
+       <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+       <origin/>
+     </inertial>
+     <visual>
+       <origin xyz="0 0 0" rpy="0 0 0" />
+       <geometry>
+         <box size="0.05 0.05 0.005" />
+       </geometry>
+       <material name="orange"/>
+     </visual>
+   </link>
+
+  <joint name="world_joint" type="fixed">
+    <parent link="world" />
+    <child link = "table" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+  
+  <joint name="table_joint" type="fixed">
+    <parent link="table" />
+    <child link = "mount_flange_link" />
+    <origin xyz="-0.30 0.305 0.7" rpy="0.0 0.0 1.5707" />
+  </joint>
+
+  <joint name="table_column1" type="fixed">
+    <parent link="table" />
+    <child link = "column1" />
+    <origin xyz="0.45 -0.505 0.7" rpy="0.0 0.0 0.0" />
+  </joint>
+  <joint name="table_column2" type="fixed">
+    <parent link="table" />
+    <child link = "column2" />
+    <origin xyz="-0.45 -0.505 0.7" rpy="0.0 0.0 0.0" />
+  </joint>
+  
+  <joint name="world_camera_joint" type="fixed">
+    <parent link="world" />
+    <child link = "camera_link" />
+    <origin xyz="-0.045 -0.85 1.31" rpy="0.0 0.745 1.56" />
+  </joint>
+      <!--
+      -->
+
+    </robot>

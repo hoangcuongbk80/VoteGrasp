@@ -1,0 +1,19 @@
+roslaunch franka_tminplan test_motion_node.launch
+catkin_make -DFranka_DIR=/home/frankanuc03/libfranka/build
+roslaunch franka_tminplan test_gripper_node.launch robot_ip:=172.16.0.103
+roslaunch franka_tminplan test_grasp_node.launch robot_ip:=172.16.0.103
+rostopic pub /votegrasp/width std_msgs/Float64 0.06
+
+rostopic pub /votegrasp/grasp std_msgs/Float64MultiArray """
+layout:
+  dim: []                                
+data: [0.0, 0.0, 0.0, -1.5, 0.0, 1.5, -0.7854, 0.06]
+"""
+
+----------------------Worked---------------------------
+roslaunch franka_tminplan joint_point_to_point_motion_my.launch
+frankanuc03@franka-nuc-03:~/ws_grasping$ roslaunch panda_table_launch panda_moveit_interface.launch
+frankanuc03@franka-nuc-03:~/ws_grasping$ roslaunch franka_gripper franka_gripper.launch robot_ip:=172.16.0.103
+frankanuc03@franka-nuc-03:~/ws_grasping$ roslaunch franka_tminplan test_grasp_node.launch
+
+frankanuc03@franka-nuc-03:~/ws_grasping$ rostopic pub /votegrasp/width std_msgFloat64 0.03

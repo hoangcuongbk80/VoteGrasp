@@ -1,0 +1,19 @@
+# On real robot at Robotlab
+
+## To build
+catkin_make -DFranka_DIR=/home/frankanuc03/libfranka/build
+
+## back initial pose
+roslaunch franka_tminplan joint_point_to_point_motion_my.launch
+
+## start planning using MoveIt!
+frankanuc03@franka-nuc-03:~/ws_grasping$ roslaunch panda_table_launch panda_moveit_interface.launch
+
+## Gripper ready
+frankanuc03@franka-nuc-03:~/ws_grasping$ roslaunch franka_gripper franka_gripper.launch robot_ip:=172.16.0.103
+
+## subscribe "/votegrasp/width" topic and publish a grasp configuration
+frankanuc03@franka-nuc-03:~/ws_grasping$ roslaunch franka_tminplan test_grasp_node.launch
+
+## publish a topic "/votegrasp/width"
+frankanuc03@franka-nuc-03:~/ws_grasping$ rostopic pub /votegrasp/width std_msgs/Float64 0.03

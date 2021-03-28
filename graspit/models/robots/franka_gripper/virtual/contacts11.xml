@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<virtual_contacts>
+  <robot_name>fetch_gripper</robot_name>
+  <num_contacts>3</num_contacts>
+  <virtual_contact>
+    <finger_number>1</finger_number>
+    <link_number>0</link_number>
+    <num_friction_edges>1</num_friction_edges>
+    <friction_edges>
+      <friction_edge>1.17505e-16 0 0 0 0 1.91901</friction_edge>
+    </friction_edges>
+    <location>0 0 0</location>
+    <!--w, x, y, z -->
+    <rotation>0 0 0 0</rotation>
+    <!--x, y, z -->
+    <translation>5 0 3.5</translation>
+    <!--x, y, z -->
+    <normal>0 0 1 </normal>
+    <sCof>0.1</sCof>
+  </virtual_contact>
+  <virtual_contact>
+    <finger_number>0</finger_number>
+    <link_number>0</link_number>
+    <num_friction_edges>1</num_friction_edges>
+    <friction_edges>
+      <friction_edge>0 0 0 0 0 3</friction_edge>
+      
+    </friction_edges>
+    <location>0 0 0</location>
+    <!--w, x, y, z -->
+    <rotation>0 0 0 0</rotation>
+    <!--x, y, z -->
+    <translation>5 0 3.5</translation>
+    <!--x, y, z -->
+    <normal>0 0 1 </normal>
+    <sCof>0.1</sCof>
+  </virtual_contact>
+  <virtual_contact>
+    <finger_number>-1</finger_number>
+    <link_number>0</link_number>
+    <num_friction_edges>1</num_friction_edges>
+    <friction_edges>
+      <friction_edge>1.0141e-16 0 0 0 0 1.65615</friction_edge>
+    </friction_edges>
+    <location>-2.2209 0.219024 1.37159</location>
+    <!--w, x, y, z -->
+    <rotation>0 0 0 90</rotation>
+    <!--x, y, z -->
+    <translation>0 0 -8</translation>
+    <!--x, y, z -->
+    <normal>0.999391 -1.16132e-14 0.0348881</normal>
+    <sCof>0.1</sCof>
+  </virtual_contact>
+  </virtual_contacts>

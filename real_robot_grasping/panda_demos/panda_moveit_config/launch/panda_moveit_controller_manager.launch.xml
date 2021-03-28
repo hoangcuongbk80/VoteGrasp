@@ -1,0 +1,9 @@
+<launch>
+  <param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager"/>
+
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find panda_moveit_config)/config/panda_controllers.yaml"/>
+  <!--rosparam file="$(find panda_table_launch)/config/controllers.yaml"/-->
+
+</launch>

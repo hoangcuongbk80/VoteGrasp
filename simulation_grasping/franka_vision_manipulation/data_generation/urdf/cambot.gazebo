@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<robot>
+  <gazebo>
+    <static>true</static>
+  </gazebo>
+  
+  <!-- Link1 -->
+  <gazebo reference="011_banana_link">
+    <!-- <material>Gazebo/Orange</material> -->
+  </gazebo>
+
+</robot>

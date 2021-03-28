@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!-- Revolute-Revolute Manipulator -->
+<robot name="cambot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Constants for robot dimensions -->
+  <xacro:property name="pi" value="3.1415926535897931"/>
+
+  <!-- Import all Gazebo-customization elements, including Gazebo colors -->
+   <xacro:include filename="$(find data_generation)/urdf/cambot.gazebo" />
+   <xacro:include filename="$(find data_generation)/urdf/rgbd_camera.gazebo" />
+  <!-- Import Rviz colors -->
+  <xacro:include filename="$(find data_generation)/urdf/materials.xacro" />
+
+  <!-- Used for fixing robot to Gazebo 'base_link' -->
+  <link name="world"/>
+
+  <link name="011_banana_link">
+    <visual>
+      <geometry>
+	      <mesh filename="package://panda_table_description/meshes/011_banana/textured.dae"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://panda_table_description/meshes/011_banana/nontextured.stl"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+    </collision>
+    <inertial>
+      <mass value="0.1" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.0007765" ixy="0" ixz="0" iyy="0.0000725" iyz="0" izz="0.0007657" />
+    </inertial>
+  </link>
+  <joint name="011_banana_joint" type="fixed">
+    <parent link="world" />
+    <child link = "011_banana_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <link name="camera_link">
+    <collision>
+      <geometry>
+        <mesh filename="package://panda_table_description/meshes/asus_xtion_pro_camera.dae"/>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <mesh filename="package://panda_table_description/meshes/asus_xtion_pro_camera.dae"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.316" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.0007765" ixy="0" ixz="0" iyy="0.0000725" iyz="0" izz="0.0007657" />
+    </inertial>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+      <parent link="world"/>
+      <child link="camera_link"/>
+      <origin xyz="0.0 -0.5 0.7" rpy="0.0 ${pi/3} ${pi/2}" />
+  </joint>
+
+  <link name="asus_rgb_optical_frame"/>
+  <joint name="asus_optical_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.0 0.0 0.0" rpy="${-pi/2} 0 ${-pi/2}"/> 
+    <parent link="camera_link"/>
+    <child link="asus_rgb_optical_frame"/>
+  </joint>
+
+</robot>

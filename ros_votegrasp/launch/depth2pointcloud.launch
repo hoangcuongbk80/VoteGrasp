@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="depth_to_pointcloud" pkg="ros_votegrasp" type="depth2pointcloud_node" cwd="node">
+  <param name="blender_data_dir" value="/home/hoang/OSS/VoteGrasp/blender-scripts/data/"/>
+  <param name="save_dir" value="$(find ros_votegrasp)/data/"/>
+  <param name="start_scene" value="0"/>
+  <param name="end_scene" value="50"/>
+  <param name="start_save_idx" value="0"/>
+  <param name="fx" value="580.0"/> <!-- 581.8 -->
+  <param name="fy" value="580.0"/> <!-- 581.5 -->
+  <param name="cx" value="320.0"/> <!-- 319.0 -->
+  <param name="cy" value="240.0"/> <!-- 237.3 -->
+  <param name="depth_factor" value="1"/>
+  <param name="downsample" value="0.005"/>
+  <param name="start_X" value="0"/> <!-- cols -->
+  <param name="start_Y" value="0"/> <!-- rows -->
+  <param name="icp" value="true"/>
+
+  </node>
+</launch>

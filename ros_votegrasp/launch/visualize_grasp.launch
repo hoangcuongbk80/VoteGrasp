@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="visualize_grasp" pkg="ros_votegrasp" type="visualize_grasp_node" cwd="node">
+  <!-- <param name="grasp_path" value="$(find ros_votegrasp)/data/ycb-models/011_banana/grasp_euler.txt"/> -->
+  <param name="grasp_path" value="/home/hoang/Orebro-Study/Manuscripts/votegrasp_draft/data/grasp/real_demo3_grasp.txt"/>
+  <!-- <param name="grasp_path" value="/home/hoang/Orebro-Study/Manuscripts/votegrasp_draft/data/grasp/real_demo4_grasp.txt"/> -->
+  <param name="rot_type" value="1"/> <!-- 0: quaternions, 1: Euler angles -->
+  <param name="quality_thresh" value="0.0"/> <!-- 0: quaternions, 1: Euler angles -->  
+  </node>
+  <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ros_votegrasp)/launch/votegrasp.rviz"/>
+  
+</launch>

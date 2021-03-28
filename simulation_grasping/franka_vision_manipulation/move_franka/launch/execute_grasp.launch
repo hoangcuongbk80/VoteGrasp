@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <group ns="panda"> <!-- comment this for simulation -->
+
+    <node name="execute_grasp" pkg="move_franka" type="execute_grasp_node" cwd="node">
+      <!-- <rosparam param="initial_pose"> [0.0, 0.0, 1.0, 180, 0, -90]</rosparam> --> <!-- panda_table -->
+      <rosparam param="initial_pose"> [0.0, 0.0, 1.0, 180, 0, -90]</rosparam> <!-- panda_robotlab -->  
+      <param name="test" value="true"/>
+
+    </node>
+
+  </group> <!-- comment this for simulation -->
+
+</launch>

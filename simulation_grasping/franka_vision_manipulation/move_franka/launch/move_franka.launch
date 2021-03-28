@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- By default, we are not in debug mode -->
+  <arg name="debug" default="false" />
+  <arg name="load_gripper" default="true" />
+
+  <!-- GDB Debug Option -->
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg     if="$(arg debug)" name="launch_prefix"
+     value="gdb -x $(find panda_moveit_config)/launch/gdb_settings.gdb --ex run --args" />
+
+  <group ns="panda"> <!-- comment this for simulation -->
+  <node name="move_franka_node" pkg="move_franka" type="move_franka_node" respawn="false" launch-prefix="$(arg launch_prefix)" output="screen"/>
+  </group> <!-- comment this for simulation -->
+
+  <!--<arg name="node_start_delay" default="1.0" />  
+  launch-prefix="bash -c 'sleep $(arg node_start_delay)'"-->
+  
+
+</launch>
+

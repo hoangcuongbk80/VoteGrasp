@@ -1,0 +1,69 @@
+hiqp_joint_velocity_controller:
+   hiqp_preload_geometric_primitives:
+  #####      OBSTACLE AVOIDANCE PRIMITIVES    #####
+    - name: table_plane
+      type: plane 
+      frame_id: base_link
+      visible: true
+      color: [0.2, 0.2, 0.5, 0.5]
+      parameters: [0.0, 0.0, 1.0, 0.01]
+    - name: wall_plane
+      type: plane 
+      frame_id: base_link
+      visible: true
+      color: [0.2, 0.5, 0.2, 0.5]
+      parameters: [0.0, 1.0, 0.0, -0.6]
+    - name: base_sphere
+      type: sphere 
+      frame_id: shoulder_link
+      visible: true
+      color: [1.0, 0.0, 0.0, 0.6]
+      parameters: [0.0, 0.0, 0.0, 0.125]
+    - name: upper_arm_sphere
+      type: sphere 
+      frame_id: upper_arm_link
+      visible: true
+      color: [1.0, 0.0, 0.0, 0.6]
+      parameters: [0.0, -0.03, 0.01, 0.125]
+    - name: shoulder_sphere
+      type: sphere 
+      frame_id: forearm_link
+      visible: true
+      color: [1.0, 0.0, 0.0, 0.6]
+      parameters: [0.00, 0.13, 0.0, 0.09]
+    - name: forearm_sphere
+      type: sphere 
+      frame_id: forearm_link
+      visible: true
+      color: [1.0, 0.0, 0.0, 0.6]
+      parameters: [0.00, 0.0, 0.0, 0.09]
+    - name: forearm_to_wrist_sphere
+      type: sphere 
+      frame_id: forearm_link
+      visible: true
+      color: [1.0, 0.0, 0.0, 0.6]
+      parameters: [0.00, 0.0, 0.45, 0.05]
+    - name: wrist_1_sphere
+      type: sphere 
+      frame_id: wrist_1_link
+      visible: true
+      color: [1.0, 0.0, 0.0, 0.6]
+      parameters: [0.00, 0.0, 0.0, 0.07]
+    - name: wrist_2_sphere
+      type: sphere 
+      frame_id: wrist_1_link
+      visible: true
+      color: [1.0, 0.0, 0.0, 0.6]
+      parameters: [0.00, 0.0, 0.0, 0.07]
+    - name: wrist_3_sphere
+      type: sphere 
+      frame_id: wrist_1_link
+      visible: true
+      color: [1.0, 0.0, 0.0, 0.6]
+      parameters: [0.00, 0.0, 0.0, 0.07]
+    - name: gripper_sphere
+      type: sphere 
+      frame_id: robotiq_85_base_link
+      visible: true
+      color: [1.0, 0.0, 0.0, 0.6]
+      parameters: [0.005, 0.0, 0.0, 0.08]

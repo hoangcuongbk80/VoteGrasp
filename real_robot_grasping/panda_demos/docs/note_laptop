@@ -1,0 +1,20 @@
+
+# subcribe topic "/votegrasp/grasp" for a grasp configuration, plan grasping by graspit, and publish topic "/votegrasp/width" to close gripper
+roslaunch move_franka execute_grasp.launch
+
+# robotlab move back
+rostopic pub /votegrasp/grasp std_msgs/Float64MultiArray """
+layout:
+  dim: []                                
+data: [-0.29, -0.25, 1.3, 180, 0, 90, 0.06]
+"""
+
+# robotlab move pick
+rostopic pub /votegrasp/grasp std_msgs/Float64MultiArray """
+layout:
+  dim: []                                
+data: [-0.29, -0.25, 1.18, 180, 0, 90, 0.005]
+"""
+
+## publish a topic "/votegrasp/width" to test gripper
+rostopic pub /votegrasp/width std_msgs/Float64 0.03

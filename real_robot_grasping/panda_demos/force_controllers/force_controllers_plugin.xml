@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<library path="lib/libforce_controllers">
+
+  <class name="force_controllers/ImpedanceController" 
+         type="force_controllers::ImpedanceController" 
+         base_class_type="controller_interface::ControllerBase">
+    <description>
+      A joint effort controller that mimics a mass-spring-damper system following a trajectory.
+    </description>
+  </class>
+
+</library>

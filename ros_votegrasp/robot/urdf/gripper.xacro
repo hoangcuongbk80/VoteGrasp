@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="franka_gripper">
+
+<!-- Base Link -->
+  <link name="hand">
+    <collision>
+      <geometry>
+          <mesh filename="package://ros_votegrasp/meshes/collision/hand.stl"/>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+          <mesh filename="package://ros_votegrasp/meshes/visual/hand.dae"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.73" />
+      <origin xyz="0 0.0015244 0.0275912" rpy="0 0 0" />
+      <inertia ixx="0.00278560230025" ixy="0.0" ixz="0.0" iyy="0.000400033405336" iyz="0.0" izz="0.00256378041832" />
+    </inertial>
+  </link>
+  
+  <link name="left_finger">
+    <collision>
+      <geometry>
+          <mesh filename="package://ros_votegrasp/meshes/collision/finger.stl"/>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+          <mesh filename="package://ros_votegrasp/meshes/visual/finger.dae"/>
+      </geometry>
+    </visual>
+   <inertial>
+      <mass value="0.1" />
+      <origin xyz="0 0.0145644 0.0227941" rpy="0 0 0" />
+      <inertia ixx="3.01220925051e-05" ixy="0.0" ixz="0.0" iyy="2.95873808038e-05" iyz="0.0" izz="6.95125211657e-06" />
+    </inertial>
+  </link>
+  
+  <link name="right_finger">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+      <geometry>
+          <mesh filename="package://ros_votegrasp/meshes/collision/finger.stl"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+      <geometry>
+          <mesh filename="package://ros_votegrasp/meshes/visual/finger.dae"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.1" />
+      <origin xyz="0 0.0145644 0.0227941" rpy="0 0 ${pi}" />
+      <inertia ixx="3.01220925051e-05" ixy="0.0" ixz="0.0" iyy="2.95873808038e-05" iyz="0.0" izz="6.95125211657e-06" />
+    </inertial>
+  </link>
+
+  <joint name="joint1" type="prismatic">
+    <parent link="hand"/>
+    <child link="left_finger"/>
+    <origin xyz="0 0 0.0584" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="20" lower="0.0" upper="0.04" velocity="0.2"/>
+  </joint>
+  
+  <joint name="joint2" type="prismatic">
+    <parent link="hand"/>
+    <child link="right_finger"/>
+    <origin xyz="0 -0.04 0.0584" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <limit effort="20" lower="0.0" upper="0.04" velocity="0.2"/>
+    <mimic joint="joint1" />
+  </joint>
+
+</robot>

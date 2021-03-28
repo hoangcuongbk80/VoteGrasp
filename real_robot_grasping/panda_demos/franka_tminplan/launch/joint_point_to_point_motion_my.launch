@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<launch>
+
+  <node name="joint_point_to_point_motion_my" pkg="franka_tminplan" type="joint_point_to_point_motion_my" output="screen">
+
+    <rosparam param="para_goal"> [0, 0, 0, -1.5, 0, 1.5, -0.7854]</rosparam>
+    
+    <!-- <rosparam param="para_goal"> [0.193813, 0.335989, 0.0497932, -1.28496, 5.07056e-05, 3.22699, -0.783521]</rosparam> -->
+    <!-- <rosparam param="para_goal"> [0.190987, 0.373458, 0.0470603, -1.62236, 0.000378385, 3.61493, -0.785169]</rosparam> -->
+
+    <!-- <rosparam param="para_goal"> [-0.193813, 0.335989, -0.0497932, -1.28496, -5.07056e-05, 3.22699, -0.783521]</rosparam> -->
+    <!-- <rosparam param="para_goal"> [-0.190987, 0.373458, -0.0470603, -1.62236, -0.000378385, 3.61493, -0.785169]</rosparam> -->
+    
+    <!-- <rosparam param="para_goal"> [-0.645867, 0.943307, -0.0717049, -0.307394, -0.000934956, 2.88331, -0.759619]</rosparam> -->
+    <!-- <rosparam param="para_goal"> [-0.586117, 0.750889, -0.0886796, -0.991252, -0.000361699, 3.30407, -0.712375]</rosparam> -->
+
+
+    <!-- <rosparam param="para_goal"> [0.43435, 0.64604, 0.0433379, -0.817034, 0.00035122, 3.04363, -0.767952]</rosparam> -->
+    <!-- <rosparam param="para_goal"> [0.295069, 0.552211, 0.256056, -1.29926, 0.00147548, 3.42248, -0.785438]</rosparam> -->
+
+    <!-- <rosparam param="para_goal"> [0,  0.32002,  0,  -1.32381, 0,  3.30745,  -0.785437]</rosparam> -->
+    <!-- <rosparam param="para_goal"> [0,  0.334268, 0,  -1.64587, 0,  3.64376,  -0.785438]</rosparam> -->
+    
+    <!-- <rosparam param="para_goal"> [-0.43435, 0.64604, -0.0433379, -0.817034, -0.00035122, 3.04363, -0.767952]</rosparam> -->
+    <!-- <rosparam param="para_goal"> [-0.295069, 0.552211, -0.256056, -1.29926, -0.00147548, 3.42248, -0.613864]</rosparam> -->
+
+    <param name="speed_factor" value="0.05" />  
+  </node>
+
+
+
+</launch>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <!-- arguments -->
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="false"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+    <arg name="start_moveit" default="false"/>
+    <arg name="load_gripper" default="false"/>
+    
+    <!-- load robot description from xacro file -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find panda_table_description)/urdf/panda_table.urdf.xacro load_gripper:=$(arg load_gripper)"/>
+
+    <!--launch GAZEBO with own world configuration -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="debug" value="$(arg debug)"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model panda -J panda_joint1 0.0 -J panda_joint2 -0.8 -J panda_joint3 0.0 -J panda_joint4 -2.8 -J panda_joint5 0.0 -J panda_joint6 1.8 -J panda_joint7 0.8"/>
+
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+    <rosparam file="$(find franka_control)/config/panda_gazebo_control.yaml" command="load"/>
+    <rosparam file="$(find force_controllers)/config/panda_impedance.yaml" command="load"/>
+
+    <!-- load the controllers -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="joint_state_controller impedance_controller" />
+
+
+    <!-- convert joint states to TF transforms for rviz, etc -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
+
+    
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find panda_table_description)/launch/sim.rviz" />
+
+</launch>

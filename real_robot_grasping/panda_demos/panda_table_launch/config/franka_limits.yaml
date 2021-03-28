@@ -1,0 +1,35 @@
+hiqp_joint_velocity_controller:
+  #####      JOINT LIMITATIONS    #####
+  hiqp_preload_jnt_limits:
+   - link_frame: panda_link1
+     limitations: [1.0, 2.0, -2.9, 2.9, 0.2, 0.9] #ddq_max, dq_max, lower link limit, upper joint limit, P gain, D gain
+   - link_frame: panda_link2
+     limitations: [1.0, 2.0, -1.8, 1.8, 0.2, 0.9]
+   - link_frame: panda_link3
+     limitations: [1.0, 2.0, -2.9, 2.9, 0.2, 0.9]
+   - link_frame: panda_link4
+     limitations: [1.0, 2.0, -3.1, 0.0, 0.2, 0.9]
+   - link_frame: panda_link5
+     limitations: [1.0, 2.0, -2.9, 2.9, 0.2, 0.9]
+   - link_frame: panda_link6
+     limitations: [1.0, 2.0, -0.05, 3.8, 0.2, 0.9]
+   - link_frame: panda_link7
+     limitations: [1.0, 2.0, -2.9, 2.9, 0.2, 0.9]
+
+franka_hiqp_joint_effort_controller:
+  #####      JOINT LIMITATIONS    #####
+  hiqp_preload_jnt_limits:
+   - link_frame: panda_link1
+     limitations: [1.0, 2.0, -2.9, 2.9, 0.2, 0.9] #ddq_max, dq_max, lower link limit, upper joint limit, P gain, D gain
+   - link_frame: panda_link2
+     limitations: [1.0, 2.0, -1.8, 1.8, 0.2, 0.9]
+   - link_frame: panda_link3
+     limitations: [1.0, 2.0, -2.9, 2.9, 0.2, 0.9]
+   - link_frame: panda_link4
+     limitations: [1.0, 2.0, -3.1, 0.0, 0.2, 0.9]
+   - link_frame: panda_link5
+     limitations: [1.0, 2.0, -2.9, 2.9, 0.2, 0.9]
+   - link_frame: panda_link6
+     limitations: [1.0, 2.0, -0.05, 3.8, 0.2, 0.9]
+   - link_frame: panda_link7
+     limitations: [1.0, 2.0, -2.9, 2.9, 0.2, 0.9]

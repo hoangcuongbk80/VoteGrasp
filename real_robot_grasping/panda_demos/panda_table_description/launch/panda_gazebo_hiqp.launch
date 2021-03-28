@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <!-- arguments -->
+    <arg name="paused" default="true"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="false"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+    <arg name="load_gripper" default="true"/>
+    <arg name="robot_namespace" default="panda"/>
+    <arg name="controllers" default="joint_state_controller franka_gripper hiqp_joint_effort_controller"/>
+    <arg name="rviz" default="true"/>
+    
+    <rosparam command="load" file="$(find panda_table_launch)/config/controllers.yaml" />
+    <rosparam command="load" file="$(find panda_table_launch)/config/franka_limits.yaml" />
+
+    <!--launch GAZEBO with own world configuration -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <!--arg name="world_name" value="$(find panda_table_description)/worlds/panda_gripper.world"/-->
+        <arg name="debug" value="$(arg debug)"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find panda_table_description)/urdf/panda_table.urdf.xacro' load_gripper:=$(arg load_gripper)"/>
+
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model panda -J panda_joint1 0.0 -J panda_joint2 -1.1 -J panda_joint3 0.0 -J panda_joint4 -2.0 -J panda_joint5 0.0 -J panda_joint6 1.8 -J panda_joint7 0.8"/>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen"/>
+
+    <!-- load the controllers -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg controllers)"/>
+
+    <!-- load rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" if="$(arg rviz)" args="-d $(find panda_table_description)/launch/sim.rviz" />
+
+
+</launch>

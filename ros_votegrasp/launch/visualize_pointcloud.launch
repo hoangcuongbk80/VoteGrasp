@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="visualize_pointcloud" pkg="ros_votegrasp" type="visualize_pointcloud_node" cwd="node">
+  <!-- <param name="point_cloud_path" value="$(find ros_votegrasp)/data/ycb-models/011_banana/nontextured.ply"/> -->
+  <param name="point_cloud_path" value="/home/hoang/Orebro-Study/Manuscripts/votegrasp_draft/data/pointcloud/real_demo3_process.ply"/>
+  <!-- <param name="point_cloud_path" value="/home/hoang/Orebro-Study/Manuscripts/votegrasp_draft/data/pointcloud/real_demo4_process1.ply"/> -->  
+  </node>
+  <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ros_votegrasp)/launch/votegrasp.rviz"/>
+  
+</launch>

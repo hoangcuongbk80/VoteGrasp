@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="start_arm" default="true"/>
+  <arg name="load_description" default="true"/>
+  <arg name="robot_namespace" default="panda"/>
+  <arg name="load_gripper" default="false"/>
+  <arg name="robot_ip" default="192.168.200.3"/>
+  <arg name="controllers" default="franka_state_controller cartesian_impedance_controller"/>
+  <arg name="rviz" default="false"/>
+
+  <rosparam command="load" file="$(find panda_table_launch)/config/controllers.yaml" ns="$(arg robot_namespace)" />
+  <rosparam command="load" file="$(find franka_control)/config/default_controllers.yaml" ns="$(arg robot_namespace)" />
+
+  <!--    arm specific launch      -->
+  <group ns="$(arg robot_namespace)" if="$(arg start_arm)">
+     <param name="robot_description" if="$(arg load_description)" 
+	    command="$(find xacro)/xacro --inorder '$(find panda_table_description)/urdf/panda_table.urdf.xacro' load_gripper:=$(arg load_gripper)"/>
+
+     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen"/>
+     
+     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg controllers)" />
+     <node name="franka_control" pkg="franka_control" type="franka_control_node" output="screen" required="true">
+        <rosparam command="load" file="$(find franka_control)/config/franka_control_node.yaml" />
+        <param name="robot_ip" value="$(arg robot_ip)" />
+     </node>
+
+     <node name="joint_state_publisher" type="joint_state_publisher" pkg="joint_state_publisher" output="screen">
+        <rosparam if="$(arg load_gripper)" param="source_list">[franka_state_controller/joint_states, franka_gripper/joint_states] </rosparam>
+        <rosparam unless="$(arg load_gripper)" param="source_list">[franka_state_controller/joint_states] </rosparam>
+        <param name="rate" value="50"/>
+     </node>
+  </group>
+
+  <node name="rviz" pkg="rviz" type="rviz" if="$(arg rviz)"/>
+
+</launch>

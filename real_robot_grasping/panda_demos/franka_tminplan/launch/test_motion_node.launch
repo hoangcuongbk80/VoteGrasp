@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+
+<launch>
+
+  <node name="test_motion_node" pkg="franka_tminplan" type="test_motion_node" output="screen">
+
+    <param name="robot_ip" value="172.16.0.103" />  
+    <rosparam param="initial_pose"> [0.05, 0.05, 0, -1.5, 0, 1.5, -0.7854]</rosparam> <!-- x y z rx ry rz -->
+    <param name="speed_factor" value="0.01" />  
+
+  </node>
+
+</launch>

@@ -1,0 +1,271 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="panda" >
+
+  <!-- panda arm -->
+  <xacro:include filename="$(find franka_description)/robots/panda_arm.xacro"/>
+  <xacro:include filename="$(find franka_description)/robots/hand.xacro"/> 
+
+  <!-- for simulation -->
+  <xacro:include filename="$(find franka_description)/robots/panda.transmission.xacro"/>
+  <xacro:include filename="$(find panda_table_description)/urdf/panda_table.gazebo.xacro"/>
+  <!-- end for simulation -->
+
+  <xacro:include filename="$(find panda_table_description)/urdf/rgbd_camera.gazebo" />
+
+  <xacro:panda_arm connected_to="mount_flange_link" xyz="0.0 0.0 0.0" rpy="0 0 ${pi}" />
+  <xacro:if value="$(arg load_gripper)">
+     <xacro:hand ns="panda" rpy="0 0 ${-pi/4}" connected_to="panda_link8"/>
+  </xacro:if>
+  <xacro:unless value="$(arg load_gripper)">
+   <link name="tool">
+     <inertial>
+       <mass value="0.642"/>
+       <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+       <origin/>
+     </inertial>
+     <visual>
+       <origin xyz="0 0 -0.15" rpy="0 0 0" />
+       <geometry>
+         <cylinder radius="0.0085" length="0.3" />
+       </geometry>       
+       <material name="orange"/>
+     </visual>
+     <collision name="tool_collision">
+       <origin xyz="0 0 -0.15" rpy="0 0 0" />
+       <geometry>
+         <cylinder radius="0.0085" length="0.3" />
+       </geometry>
+     </collision>
+   </link>
+  
+     <joint name="tool_joint" type="fixed">
+       <parent link="panda_link8" />
+       <child link = "tool" />
+       <origin xyz="0.0 0.0 0.3" rpy="0.0 0.0 0.0" />
+     </joint>
+
+  </xacro:unless>
+
+  <!-- for simulation -->
+  <xacro:arg name="robot_name" default="panda"/>
+  <xacro:panda_table_gazebo robot_name="$(arg robot_name)" load_gripper="$(arg load_gripper)" />
+  <xacro:panda_transmission robot_name="$(arg robot_name)" load_gripper="$(arg load_gripper)" />
+  <!-- end for simulation -->
+
+  <link name="world" />
+
+  <link name="table">
+    <visual>
+      <geometry>
+	<box size="1.0 1.35 0.7" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.35" />
+    </visual>
+    <collision>
+      <geometry>
+	<box size="1.0 1.35 0.7" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.35" />
+    </collision>
+   </link>
+  
+   <link name="mount_flange_link">
+     <inertial>
+       <mass value="0.01"/>
+       <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+       <origin/>
+     </inertial>
+     <visual>
+       <origin xyz="0 0 0" rpy="0 0 0" />
+       <geometry>
+         <box size="0.15 0.15 0.005" />
+       </geometry>
+       <material name="orange"/>
+     </visual>
+   </link>
+ 
+   <link name="column1">
+    <visual>
+      <geometry>
+	<box size="0.1 0.1 0.515" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </visual>
+    <collision>
+      <geometry>
+	<box size="0.1 0.1 0.515" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </collision>
+   </link>
+   <link name="column2">
+    <visual>
+      <geometry>
+	<box size="0.1 0.1 0.515" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </visual>
+    <collision>
+      <geometry>
+	<box size="0.1 0.1 0.515" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </collision>
+   </link>
+   
+  <link name="011_banana">
+    <visual>
+      <geometry>
+	      <mesh filename="package://panda_table_description/meshes/011_banana/textured.dae"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://panda_table_description/meshes/011_banana/nontextured.stl"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </collision>
+  </link>
+  <link name="008_pudding_box">
+    <visual>
+      <geometry>
+	      <mesh filename="package://panda_table_description/meshes/008_pudding_box/textured.dae"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://panda_table_description/meshes/008_pudding_box/nontextured.stl"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </collision>
+   </link>
+    <link name="024_bowl">
+    <visual>
+      <geometry>
+	      <mesh filename="package://panda_table_description/meshes/024_bowl/textured.dae"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://panda_table_description/meshes/024_bowl/nontextured.stl"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </collision>
+   </link>
+  <link name="044_flat_screwdriver">
+    <visual>
+      <geometry>
+	      <mesh filename="package://panda_table_description/meshes/044_flat_screwdriver/textured.dae"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://panda_table_description/meshes/044_flat_screwdriver/nontextured.stl"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </collision>
+  </link>
+  <link name="065-h_cups">
+    <visual>
+      <geometry>
+	      <mesh filename="package://panda_table_description/meshes/065-h_cups/textured.dae"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://panda_table_description/meshes/065-h_cups/nontextured.stl"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.2575" />
+    </collision>
+   </link>
+
+  <link name="camera_link">
+    <collision>
+      <geometry>
+        <mesh filename="package://panda_table_description/meshes/asus_xtion_pro_camera.dae"/>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <mesh filename="package://panda_table_description/meshes/asus_xtion_pro_camera.dae"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.316" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.0007765" ixy="0" ixz="0" iyy="0.0000725" iyz="0" izz="0.0007657" />
+    </inertial>
+  </link>
+
+  <joint name="world_joint" type="fixed">
+    <parent link="world" />
+    <child link = "table" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+  
+  <joint name="table_joint" type="fixed">
+    <parent link="world" />
+    <child link = "mount_flange_link" />
+    <origin xyz="0.0 0.45 0.7" rpy="0.0 0.0 1.5707" />
+  </joint>
+
+  <joint name="table_column1" type="fixed">
+    <parent link="table" />
+    <child link = "column1" />
+    <origin xyz="0.45 -0.605 0.7" rpy="0.0 0.0 0.0" />
+  </joint>
+  <joint name="table_column2" type="fixed">
+    <parent link="table" />
+    <child link = "column2" />
+    <origin xyz="-0.45 -0.605 0.7" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <joint name="table_011_banana" type="fixed">
+    <parent link="table" />
+    <child link = "011_banana" />
+    <origin xyz="0.1 0.0 0.45" rpy="0.0 0.0 0.0" />
+  </joint>
+  <joint name="008_pudding_box" type="fixed">
+    <parent link="table" />
+    <child link = "008_pudding_box" />
+    <origin xyz="0.0 -0.1 0.45" rpy="0.0 0.0 0.0" />
+  </joint>
+  <joint name="024_bowl" type="fixed">
+    <parent link="table" />
+    <child link = "024_bowl" />
+    <origin xyz="-0.13 0.0 0.45" rpy="0.0 0.0 0.0" />
+  </joint>
+  <joint name="044_flat_screwdriver" type="fixed">
+    <parent link="table" />
+    <child link = "044_flat_screwdriver" />
+    <origin xyz="0.0 0.1 0.45" rpy="0.0 0.0 0.0" />
+  </joint>
+  <joint name="table_065-h_cups" type="fixed">
+    <parent link="table" />
+    <child link = "065-h_cups" />
+    <origin xyz="0.0 0.0 0.45" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <joint name="world_camera_joint" type="fixed">
+    <parent link="table" />
+    <child link = "camera_link" />
+    <origin xyz="-0.05 -0.60 1.15" rpy="0.0 ${0.255*pi} ${pi/2}" />
+  </joint>
+
+  <link name="asus_rgb_optical_frame"/>
+  <joint name="asus_optical_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.0 0.0 0.0" rpy="${-pi/2} 0 ${-pi/2}"/> 
+    <parent link="camera_link"/>
+    <child link="asus_rgb_optical_frame"/>
+  </joint>
+      <!--
+      -->
+
+    </robot>

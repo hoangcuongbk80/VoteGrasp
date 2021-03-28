@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="u_plot"
+        pkg="rqt_plot"
+        type="rqt_plot"
+        args="/irb4400/impedance_controller/u/data[0] /irb4400/impedance_controller/u/data[1] /irb4400/impedance_controller/u/data[2] /irb4400/impedance_controller/u/data[3] /irb4400/impedance_controller/u/data[4] /irb4400/impedance_controller/u/data[5]" />
+
+  <node name="r_plot"
+        pkg="rqt_plot"
+        type="rqt_plot"
+        args="/irb4400/impedance_controller/r/data[0] /irb4400/impedance_controller/r/data[1] /irb4400/impedance_controller/r/data[2] /irb4400/impedance_controller/r/data[3] /irb4400/impedance_controller/r/data[4] /irb4400/impedance_controller/r/data[5]" />
+
+  <node name="q_plot"
+        pkg="rqt_plot"
+        type="rqt_plot"
+        args="/irb4400/impedance_controller/q/data[0] /irb4400/impedance_controller/q/data[1] /irb4400/impedance_controller/q/data[2] /irb4400/impedance_controller/q/data[3] /irb4400/impedance_controller/q/data[4] /irb4400/impedance_controller/q/data[5]" />
+
+
+
+
+
+  <!--node name="u_plot"
+        pkg="rqt_plot"
+        type="rqt_plot"
+        args="/irb4400/impedance_controller/u/data[0] /irb4400/impedance_controller/u/data[1] /irb4400/impedance_controller/u/data[2]" />
+
+  <node name="r_plot"
+        pkg="rqt_plot"
+        type="rqt_plot"
+        args="/irb4400/impedance_controller/r/data[0] /irb4400/impedance_controller/r/data[1] /irb4400/impedance_controller/r/data[2]" />
+
+  <node name="ee_plot"
+        pkg="rqt_plot"
+        type="rqt_plot"
+        args="/irb4400/impedance_controller/ee/data[0] /irb4400/impedance_controller/ee/data[1] /irb4400/impedance_controller/ee/data[2]" /-->
+
+</launch>

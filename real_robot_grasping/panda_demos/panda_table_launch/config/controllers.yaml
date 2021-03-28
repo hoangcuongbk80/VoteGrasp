@@ -1,0 +1,181 @@
+# Publish all joint states -----------------------------------
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 500
+
+# Joint Trajectory Velocity Controller ----------------------------------------
+joint_trajectory_vel_controller:
+  type: "velocity_controllers/JointTrajectoryController"
+  joints:
+    - panda_joint1
+    - panda_joint2
+    - panda_joint3
+    - panda_joint4
+    - panda_joint5
+    - panda_joint6
+    - panda_joint7
+  gains:
+    panda_joint1: {p: 1.5,  d: 0, i: 0.002, i_clamp: 0.1}
+    panda_joint2: {p: 1.5,  d: 0, i: 0.002, i_clamp: 0.1}
+    panda_joint3: {p: 1.5,  d: 0, i: 0.002, i_clamp: 0.1}
+    panda_joint4: {p: 1.5,  d: 0, i: 0.002, i_clamp: 0.1}
+    panda_joint5: {p: 1.5,  d: 0, i: 0.002, i_clamp: 0.1}
+    panda_joint6: {p: 1.5,  d: 0, i: 0.002, i_clamp: 0.1}
+    panda_joint7: {p: 1.5,  d: 0, i: 0.002, i_clamp: 0.1}
+
+# HiQP Velocity Controller ----------------------------------------
+hiqp_joint_velocity_controller:
+  type: hiqp_ros/HiQPJointVelocityController
+  visualization_publish_rate: 1 #Hz
+  load_primitives_from_tf: true
+  marker_prefix: ""
+  joints:
+    - panda_joint1
+    - panda_joint2
+    - panda_joint3
+    - panda_joint4
+    - panda_joint5
+    - panda_joint6
+    - panda_joint7
+  task_monitoring:
+    active: 1
+    publish_rate: 1500.0
+
+# HiQP Effort Controller ----------------------------------------
+# NOTE: if running in gazebo this is NOT recommended!
+model_free_hiqp_joint_effort_controller:
+  type: hiqp_ros/HiQPJointEffortController
+  visualization_publish_rate: 25 #Hz
+  load_primitives_from_tf: true
+  marker_prefix: ""
+  model_based: false
+  joints:
+    - panda_joint1
+    - panda_joint2
+    - panda_joint3
+    - panda_joint4
+    - panda_joint5
+    - panda_joint6
+    - panda_joint7
+  task_monitoring:
+    active: 1
+    publish_rate: 150.0
+
+# HiQP Effort Controller ----------------------------------------
+hiqp_joint_effort_controller:
+  type: hiqp_ros/HiQPJointEffortController
+  visualization_publish_rate: 25 #Hz
+  load_primitives_from_tf: true
+  marker_prefix: ""
+  model_based: true
+  chain_root: "panda_link0"
+  chain_tip: "panda_hand"
+  joints:
+    - panda_joint1
+    - panda_joint2
+    - panda_joint3
+    - panda_joint4
+    - panda_joint5
+    - panda_joint6
+    - panda_joint7
+  task_monitoring:
+    active: 1
+    publish_rate: 150.0
+  kv: 
+    - 30.0
+    - 30.0
+    - 30.0
+    - 30.0
+    - 20.0
+    - 12.0
+    - 10.0
+  kd: 
+    - 11.0
+    - 11.0
+    - 11.0
+    - 11.0
+    - 9.0
+    - 7.0
+    - 6.5
+
+# Franka HiQP Velocity Controller ----------------------------------------
+franka_hiqp_joint_velocity_controller:
+  type: franka_hiqp/FrankaHiQPJointVelocityController
+  visualization_publish_rate: 3 #Hz
+  load_primitives_from_tf: true
+  c_state_publish_rate: 150.0
+  marker_prefix: ""
+  joints:
+    - panda_joint1
+    - panda_joint2
+    - panda_joint3
+    - panda_joint4
+    - panda_joint5
+    - panda_joint6
+    - panda_joint7
+  task_monitoring:
+    active: 1
+    publish_rate: 150.0
+
+# HiQP Effort Controller ----------------------------------------
+franka_hiqp_joint_effort_controller:
+  arm_id: panda
+  type: franka_hiqp/FrankaHiQPJointEffortController
+  visualization_publish_rate: 3 #Hz
+  load_primitives_from_tf: true
+  c_state_publish_rate: 150.0
+  marker_prefix: ""
+  joints:
+    - panda_joint1
+    - panda_joint2
+    - panda_joint3
+    - panda_joint4
+    - panda_joint5
+    - panda_joint6
+    - panda_joint7
+  task_monitoring:
+    active: 1
+    publish_rate: 150.0
+  alpha_vel: 0.2
+  delta_tau_max: 1.0
+  kv: 
+    - 30.0
+    - 30.0
+    - 30.0
+    - 30.0
+    - 20.0
+    - 12.0
+    - 10.0
+  kd: 
+    - 11.0
+    - 11.0
+    - 11.0
+    - 11.0
+    - 9.0
+    - 7.0
+    - 6.5
+
+cartesian_impedance_controller:
+     type: franka_example_controllers/CartesianImpedanceExampleController
+     arm_id: panda
+     joint_names:
+         - panda_joint1
+         - panda_joint2
+         - panda_joint3
+         - panda_joint4
+         - panda_joint5
+         - panda_joint6
+         - panda_joint7
+
+franka_gripper:
+    type: effort_controllers/JointTrajectoryController
+    joints:
+        - panda_finger_joint1
+        - panda_finger_joint2
+
+    gains:
+        panda_finger_joint1: { p: 5, d: 3.0, i: 0, i_clamp: 1 }
+        panda_finger_joint2: { p: 5, d: 1.0, i: 0, i_clamp: 1 }
+
+    state_publish_rate: 100
+
