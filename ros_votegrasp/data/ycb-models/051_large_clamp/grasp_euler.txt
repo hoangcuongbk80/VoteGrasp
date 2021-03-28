@@ -1,2 +1,0 @@
-object x y z rx ry rz quality dofValue
-051_large_clamp -0.00530043 -0.0054275 0.0183356 180 0 175 0.9322 0.065
