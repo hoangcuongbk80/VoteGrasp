@@ -1,6 +1,36 @@
+# Data files and directories common
+#ycbgrasp/data/
+ycbgrasp/data_viz_dump
+demo_files/
+log_ycbgrasp/
+pointnet2/build/
+pointnet2/pointnet2.egg-info/
+pointnet2/dist/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+env/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
 
 # VS Studio Code
 .vscode
+
+# PyCharm
+.idea/
+
+# Dropbox
+.dropbox.attr
+
+# Jupyter Notebook
+.ipynb_checkpoints
 
 # pyenv
 .python-version
