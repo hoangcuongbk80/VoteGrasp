@@ -2,7 +2,7 @@
 nvidia-docker build --tag votegrasp ./
 
 # create a container
-nvidia-docker run --name my_votegrasp -it --rm -v /home/cghg/votegrasps/:/votegrasps -v /media/DiskStation/trsv/data/ycbgrasp:/ycbgrasp_dataset --ipc=host votegrasp /bin/bash
+nvidia-docker run --name my_votegrasp -it --rm -v /home/cghg/VoteGrasp/:/VoteGrasp -v /media/DiskStation/trsv/data:/data --ipc=host hoangcuongbk80/votegrasp /bin/bash
 
 # training
 cd pointnet2
