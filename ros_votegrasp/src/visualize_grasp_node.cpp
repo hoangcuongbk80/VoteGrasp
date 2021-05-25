@@ -216,6 +216,98 @@ bool setup_marker_withEuler()
     return true;
 }
 
+bool setup_marker_withViewPoint()
+{
+    if(grasps.empty())
+    {
+      std::cerr << "\n Grasps empty!";
+      return false;
+    }
+
+    for(int i=0; i < grasps.size(); i++)
+    {
+      gripper_init(10*grasps[i][7]);
+      visualization_msgs::Marker line_list;
+      geometry_msgs::Point p;
+
+      line_list.header.frame_id = "camera_depth_optical_frame";
+      line_list.header.stamp = ros::Time::now();
+      line_list.ns = "grasps";
+      line_list.id = i;
+      line_list.type = visualization_msgs::Marker::LINE_LIST;
+      line_list.action = visualization_msgs::Marker::ADD;
+      line_list.pose.position.x = grasps[i][1];
+      line_list.pose.position.y = grasps[i][2];
+      line_list.pose.position.z = grasps[i][3] + dst_gripper2object;
+      Matrix3f mat;
+      mat = AngleAxisf(180*M_PI/180, Vector3f::UnitX())
+          * AngleAxisf(0*M_PI/180, Vector3f::UnitY())
+          * AngleAxisf(grasps[i][5]*M_PI/180, Vector3f::UnitZ());
+      Quaternionf q(mat);
+      line_list.pose.orientation.x = q.x();
+      line_list.pose.orientation.y = q.y();
+      line_list.pose.orientation.z = q.z();
+      line_list.pose.orientation.w = q.w();
+      line_list.scale.x = 0.005; line_list.scale.y = 0.005; line_list.scale.z = 0.005;
+      //line_list.color.r = 1.0-grasps[i][7]; line_list.color.g = grasps[i][7]; line_list.color.b = 0.0f; line_list.color.a = 1.0;
+      line_list.color.r = 0.8f; line_list.color.g = 0.6f; line_list.color.b = 0.0f; line_list.color.a = 0.8;
+      if(grasps[i][6] > 1)
+        {line_list.color.r = 1.0f; line_list.color.g = 0.0f; line_list.color.b = 0.0f; line_list.color.a = 1.0;}
+      
+      p.x = gripper->points[0].x; p.y = gripper->points[0].y; p.z = gripper->points[0].z;
+      line_list.points.push_back(p);
+
+      p.x = gripper->points[1].x; p.y = gripper->points[1].y; p.z = gripper->points[1].z;
+      line_list.points.push_back(p);
+
+      p.x = gripper->points[2].x; p.y = gripper->points[2].y; p.z = gripper->points[2].z;
+      line_list.points.push_back(p);
+
+      p.x = gripper->points[3].x; p.y = gripper->points[3].y; p.z = gripper->points[3].z;
+      line_list.points.push_back(p);
+
+      p.x = gripper->points[2].x; p.y = gripper->points[2].y; p.z = gripper->points[2].z;
+      line_list.points.push_back(p);
+
+      p.x = gripper->points[4].x; p.y = gripper->points[4].y; p.z = gripper->points[4].z;
+      line_list.points.push_back(p);
+
+      p.x = gripper->points[3].x; p.y = gripper->points[3].y; p.z = gripper->points[3].z;
+      line_list.points.push_back(p);
+
+      p.x = gripper->points[5].x; p.y = gripper->points[5].y; p.z = gripper->points[5].z;
+      line_list.points.push_back(p);
+
+      visualization_msgs::Marker graspName;
+      graspName.header.frame_id = "camera_depth_optical_frame";
+      graspName.header.stamp = ros::Time::now();
+      graspName.id = i;
+      graspName.type = visualization_msgs::Marker::TEXT_VIEW_FACING;
+      graspName.action = visualization_msgs::Marker::ADD;
+      graspName.pose.position.x = grasps[i][1];
+      graspName.pose.position.y = grasps[i][2];
+      graspName.pose.position.z = grasps[i][3] + dst_gripper2object + 0.105;
+      graspName.pose.orientation.x = q.x();
+      graspName.pose.orientation.y = q.y();
+      graspName.pose.orientation.z = q.z();
+      graspName.pose.orientation.w = q.w();
+      graspName.text = std::to_string(i+2);
+      graspName.scale.x = 0.005; graspName.scale.y = 0.005; graspName.scale.z = 0.005;
+      graspName.color.r = 0.0f; graspName.color.g = 1.0f; graspName.color.b = 0.0f; graspName.color.a = 1.0;
+
+      graspName.lifetime = ros::Duration();
+      if(grasps[i][6] > quality_thresh)
+      {
+          //multiMarker.markers.push_back(graspName);
+          line_list.lifetime = ros::Duration();
+          multiMarker.markers.push_back(line_list);
+      }
+        
+    }
+    return true;
+}
+
+
 void read_grasp(std::string grasp_path)
 {
   ifstream grasp_file (grasp_path);
@@ -231,6 +323,7 @@ void read_grasp(std::string grasp_path)
         boost::trim(line);
 		    boost::split(st, line, boost::is_any_of("\t\r "), boost::token_compress_on);
         if(st.size() < 6) continue;
+
         for(int i=0; i < st.size(); i++)
           {
             grasp.push_back(std::stof(st[i]));
@@ -263,13 +356,16 @@ int main(int argc, char **argv)
   nh_.getParam("grasp_path", grasp_path);
   nh_.getParam("rot_type", rot_type);
   nh_.getParam("quality_thresh", quality_thresh);
-    
+  
   read_grasp(grasp_path);
+      std::cerr << "\n rot_type " << rot_type << "\n";
+
   if(rot_type==0)
     setup_marker_withQuaternion();
   if(rot_type==1)
     setup_marker_withEuler();
-
+  if(rot_type==2)
+    setup_marker_withViewPoint();
   while (ros::ok())
   {  
     //cloud_pub.publish (output);

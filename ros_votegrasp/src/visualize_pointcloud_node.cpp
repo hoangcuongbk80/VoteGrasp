@@ -19,6 +19,26 @@ using namespace std;
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr  myCloud (new pcl::PointCloud<pcl::PointXYZRGB>);
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr  objects (new pcl::PointCloud<pcl::PointXYZRGB>);
 
+double z_max, z_min;
+
+void colorZ(pcl::PointXYZRGB &point)
+{
+  if(point.z > z_max)
+  {
+    point.r = 255; point.g = 255; point.b = 255;
+    return;
+  }
+  if(point.z < z_min)
+  {
+    point.r = 0; point.g = 0; point.b = 0;
+    return;
+  }
+  double dz = (z_max - z_min);
+  //point.r = uchar((abs(point.z - z_max) / dz) * 255); //upsidedown
+  point.r = int((abs(point.z - z_min) / dz) * 255);
+  point.g = point.r; point.b = point.r;                   
+}
+
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "PointCloud_Visualization");
@@ -28,14 +48,22 @@ int main(int argc, char **argv)
   ros::Rate loop_rate(10);
 
   std:string pc_path;
+
   
   nh_ = ros::NodeHandle("~");
   nh_.getParam("point_cloud_path", pc_path);
+  nh_.getParam("z_max", z_max);
+  nh_.getParam("z_min", z_min);
   
   pcl::io::loadPLYFile<pcl::PointXYZRGB> (pc_path, *myCloud);
   Eigen::Vector4f xyz_centroid;
   pcl::compute3DCentroid (*myCloud, xyz_centroid);
   std::cerr << xyz_centroid << "\n";
+
+  for(int i=0; i < myCloud->size(); i++)
+  {
+    colorZ(myCloud->points[i]);
+  }
   
   pcl::PCLPointCloud2 cloud_filtered;
   sensor_msgs::PointCloud2 output;
