@@ -39,7 +39,7 @@ if __name__=='__main__':
     
     # Set file paths and dataset config
     dump_dir = os.path.join(BASE_DIR, 'pred_result')
-    log_dir = os.path.join(BASE_DIR, 'log') 
+    log_dir = os.path.join(BASE_DIR, 'log_ycbgrasp') 
 
     if FLAGS.dataset == 'ycbgrasp':
         sys.path.append(os.path.join(ROOT_DIR, 'ycbgrasp'))
