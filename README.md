@@ -1,14 +1,3 @@
-
-# Context-Aware Grasp Detection for Target Objects in Cluttered Scenes Using Deep Hough Voting
-
-## Introduction
-This repository is code release for our VoteGrasp paper.
-
-In this repository, we provide implementation of the proposed method (with Pytorch):
-1. VoteGrasp model can be found in [models/votegrasp.py](https://github.com/votegrasp/votegrasp/blob/master/models/votegrasp.py)
-2. Context learning module and grasp generation module can be found in [models/proposal_module.py](https://github.com/votegrasp/votegrasp/blob/master/models/proposal_module.py)
-3. Loss function can found in [models/loss_helper.py](https://github.com/votegrasp/votegrasp/blob/master/models/loss_helper.py)
-
 ## Installation
 
 Install [Pytorch](https://pytorch.org/get-started/locally/) and [Tensorflow](https://github.com/tensorflow/tensorflow) (for TensorBoard). It is required that you have access to GPUs. The code is tested with Ubuntu 16.04, Pytorch v1.1, TensorFlow v1.14, CUDA 10.0 and cuDNN v7.4.
@@ -59,12 +48,3 @@ Please use our [ros_votegrasp](https://github.com/votegrasp/ros_votegrasp)
 
 ## Real robot grasping
 Please use our [Robotlab_Franka](https://github.com/votegrasp/real_robot_grasping)
-
-## Dataset and trained model
-Please find more information on [our website](https://sites.google.com/view/votegrasp).
-
-## Acknowledgements
-Will be available after our paper has been published.
-
-## License
-Will be available after our paper has been published.
